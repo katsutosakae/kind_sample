@@ -9,7 +9,7 @@ kindを用いたローカルでのマルチノードkubernetes開発のために
 - ./devcontainers/dind_compose/.devcontainer（現在使用不可）
     - docker-in-dockerを構成。docker-compose.ymlを使用。
     - 手動でdocker環境構築しているが、docker daemonの起動＋docker.socketの作成で詰まり中。
-- ./devcontainers/dood_compose/.devcontainer（kind使用不可）
+- ./devcontainers/dood_compose/.devcontainer（推奨）
     - docker-outside-of-dockerを構成。docker-compose.ymlを使用。
 
 # 補足
@@ -17,7 +17,10 @@ kindを用いたローカルでのマルチノードkubernetes開発のために
 コンテナ内部でdockerをインストールし、ホストのdockerとは独立して動作する構成。
 ## dood (docker-outside-of-docker)
 コンテナ内部ではdockerをインストールせずに、ホストのdockerを使用する構成。\
-今回doodを使用しなかった理由は、 `kind create cluster`実行時に下記エラーが発生するため。
+一時期エラー発生していたが、何故か解決していたので現在は問題なく動作可能と思われる。\
+<details><summary>過去発生していたエラー</summary>
+
+`kind create cluster`実行時に下記エラーが発生する。
 ```
 node ➜ /workspaces $ kind create cluster --image kindest/node:v1.32.0
 Creating cluster "kind" ...
@@ -33,3 +36,4 @@ The connection to the server kind-control-plane:6443 was refused - did you speci
 ```
 原因はあんまり理解できてないが、何故かdocker-outside-of-dockerの場合のみDNS解決が遅延しコントロールプレーンのtaintが削除されるためらしい。([参考ISSUE](https://github.com/kubernetes-sigs/kind/issues/2867))\
 上記ISSUEでは、コード内部でtaint削除直前にsleepを追加することによって、DNS解決の遅延による影響に対処していたが推奨されない方法。
+</details>
