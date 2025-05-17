@@ -14,7 +14,6 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "amazonwebservices.amazon-q-vscode",
         "VisualStudioExptTeam.vscodeintellicode",
         "christian-kohler.path-intellisense",
         "ms-kubernetes-tools.vscode-kubernetes-tools"
