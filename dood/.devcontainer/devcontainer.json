@@ -1,0 +1,30 @@
+{
+  "name": "KindDevByDooD",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VERSION": "20-bullseye",
+      // Kubernetes公式バージョン（https://kubernetes.io/ja/releases/）＋それに対応するOSSのバージョンを確認
+      // 20250515最新のKubernetes 1.33.1に合わせて実装
+      "KIND_VERSION": "0.28.0",
+      "KUBECTL_VERSION": "1.33.0"
+    }
+  },
+  "workspaceFolder": "/workspaces",
+  "postCreateCommand": "sudo chown node:node /workspaces; [ ! -d kind_sample ] && git clone https://github.com/katsutosakae/kind_sample;",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {}
+  },
+  // docker操作にはカーネルの強い操作権限が必要（コンテナ自体はホストカーネルを使用するので、devContainerに権限が必要）
+  "privileged": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "amazonwebservices.amazon-q-vscode",
+        "VisualStudioExptTeam.vscodeintellicode",
+        "christian-kohler.path-intellisense",
+        "ms-kubernetes-tools.vscode-kubernetes-tools"
+      ]
+    }
+  }
+}

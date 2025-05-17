@@ -1,0 +1,24 @@
+# https://github.com/microsoft/vscode-dev-containers/blob/main/containers/docker-from-docker-compose/.devcontainer/docker-compose.yml
+version: '3'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VERSION=20-bullseye
+        # Kubernetes公式バージョン（https://kubernetes.io/ja/releases/）＋それに対応するOSSのバージョンを確認
+        # 20250515最新のKubernetes 1.33.1に合わせて実装
+        - KIND_VERSION=0.28.0
+        - KUBECTL_VERSION=1.33.0
+
+    volumes:
+      - kind_dev_volume:/workspaces
+      - /var/run/docker.sock:/var/run/docker.sock 
+
+    # コンテナを閉じずに永久起動
+    command: sleep infinity 
+
+volumes:
+  kind_dev_volume:

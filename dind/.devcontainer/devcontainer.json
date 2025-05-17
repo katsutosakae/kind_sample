@@ -1,11 +1,10 @@
 {
-  "name": "KindDev",
+  "name": "KindDevByDind",
   "build": {
     "dockerfile": "Dockerfile"
   },
   "workspaceFolder": "/workspaces",
   "workspaceMount": "type=volume,source=kind_dev_volume,target=/workspaces",
-  // devContainerのデフォルトはvscodeユーザだが、nodeイメージの場合はnodeユーザが優先して使用される
   "postCreateCommand": "sudo chown node:node /workspaces; [ ! -d kind_sample ] && git clone https://github.com/katsutosakae/kind_sample;",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker": {}
