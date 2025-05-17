@@ -4,10 +4,13 @@ kindを用いたローカルでのマルチノードkubernetes開発のために
 
 # 中身
 三種類のdevcontainerを準備。コンテナ構成の学習用に、それぞれ少し書き方を変えて作成。
-- ./dind/.devcontainer
+- ./dind/.devcontainer（推奨）
     - docker-in-dockerを構成。
-- ./dind_compose/.devcontainer
+- ./dind_compose/.devcontainer（現在使用不可）
     - docker-in-dockerを構成。docker-compose.ymlを使用。
+    - 手動でdocker環境構築しているが、docker daemonの起動＋docker.socketの作成で詰まり中。
+- ./dood_compose/.devcontainer（kind使用不可）
+    - docker-outside-of-dockerを構成。docker-compose.ymlを使用。
 
 # 補足
 ## dind (docker-in-docker)

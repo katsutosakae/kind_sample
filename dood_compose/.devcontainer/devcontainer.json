@@ -1,12 +1,12 @@
 {
   "name": "KindDevByDooD",
   "dockerComposeFile": "./docker-compose.yml",
+  "service": "kind-dev",
   "workspaceFolder": "/workspaces",
   "postCreateCommand": "sudo chown node:node /var/run/docker.sock; sudo chown node:node /workspaces; [ ! -d kind_sample ] && git clone https://github.com/katsutosakae/kind_sample;",
   "customizations": {
     "vscode": {
       "extensions": [
-        "amazonwebservices.amazon-q-vscode",
         "VisualStudioExptTeam.vscodeintellicode",
         "christian-kohler.path-intellisense",
         "ms-kubernetes-tools.vscode-kubernetes-tools"

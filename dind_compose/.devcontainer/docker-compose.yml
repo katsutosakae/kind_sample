@@ -11,13 +11,12 @@ services:
         # 20250515最新のKubernetes 1.33.1に合わせて実装
         - KIND_VERSION=0.28.0
         - KUBECTL_VERSION=1.33.0
-
     volumes:
       - kind_dev_volume:/workspaces
-      - /var/run/docker.sock:/var/run/docker.sock 
-
-    # コンテナを閉じずに永久起動
-    command: sleep infinity 
+    # docker操作にはカーネルの強い操作権限が必要（コンテナ自体はホストカーネルを使用するので、devContainerに権限が必要）
+    privileged: true
+    # コンテナが停止しないようにする
+    command: sleep infinity
 
 volumes:
   kind_dev_volume:
