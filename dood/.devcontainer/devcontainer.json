@@ -11,6 +11,7 @@
     }
   },
   "workspaceFolder": "/workspaces",
+  "workspaceMount": "type=volume,source=kind_dev_volume,target=/workspaces",
   "postCreateCommand": "sudo chown node:node /workspaces; [ ! -d kind_sample ] && git clone https://github.com/katsutosakae/kind_sample;",
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker": {}
