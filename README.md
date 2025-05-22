@@ -1,6 +1,9 @@
+# 注意
+結局devcontainerでのkindはうまくいかない可能性が高いです。doodでもdindでもエラーがあり動かせずなので、WSLかEKSに移ります、、、
+
 # 概要
 kindを用いたローカルでのマルチノードkubernetes開発のために、devcontainersを作成。\
-一応nodeのイメージを使用しているので、内部で適当なnodeserverの作成も可能
+一応nodeのイメージを使用しているので、内部で適当なnodeserverの作成も可能 \ 
 
 # 中身
 三種類のdevcontainerを準備。コンテナ構成の学習用に、それぞれ少し書き方を変えて作成。
@@ -14,7 +17,8 @@ kindを用いたローカルでのマルチノードkubernetes開発のために
 
 # 補足
 ## dind (docker-in-docker)
-コンテナ内部でdockerをインストールし、ホストのdockerとは独立して動作する構成。
+コンテナ内部でdockerをインストールし、ホストのdockerとは独立して動作する構成。\
+発生したエラーとして、kubectlでコントロールプレーンに接続できない問題。dindだと、docker-in-docker-in-dockerで入れ子が多すぎるので、ネットワークのネームスペース切り分けとかが上手く働かないような気もしている。
 ## dood (docker-outside-of-docker)
 コンテナ内部ではdockerをインストールせずに、ホストのdockerを使用する構成。\
 一時期エラー発生していたが、何故か解決していたので現在は問題なく動作可能と思われる。\
